@@ -5,9 +5,12 @@
     font-weight: 400;
     font-size: 18px;
     line-height: 22px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-@media (max-width: 600px){
+@media (max-width: 600px) {
     .profile__speciality {
         margin: 0 auto;
         font-size: 14px;

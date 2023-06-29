@@ -6,13 +6,13 @@
     display: flex;
 }
 
-@media (max-width: 900px){
+@media (max-width: 900px) {
     .profile {
         max-width: 581px;
     }
 }
 
-@media (max-width: 600px){
+@media (max-width: 600px) {
     .profile {
         max-width: 282px;
         min-height: 286px;

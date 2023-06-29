@@ -6,7 +6,7 @@
     background-size: cover;
 }
 
-@media (max-width: 600px){
+@media (max-width: 600px) {
     .header__logo {
         margin-left: 27px;
         max-width: 104px;

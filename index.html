@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Место</title>
     <link rel="stylesheet" href="pages/index.css">
 </head>
+
 <body class="body">
     <div class="page">
         <header class="header">
@@ -17,10 +19,10 @@
                 <div class="profile__avatar"></div>
                 <div class="profile__info">
                     <h1 class="profile__name">Жак-Ив Кусто</h1>
-                    <button type="button" class="button profile__edit-button" alt="Изменить"></button>
+                    <button type="button" class="button profile__edit-button" aria-label="Закрыть"></button>
                     <p class="profile__speciality">Исследователь океана</p>
                 </div>
-                <button type="button" class="button profile__add-button"></button>
+                <button type="button" class="button profile__add-button" aria-label="Редактировать"></button>
             </section>
 
             <section class="elements">
@@ -28,7 +30,8 @@
                     <img src="images/karachaevsk.jpg" alt="Карачаевск" class="element__photo">
                     <div class="element__title">
                         <h2 class="element__place">Карачаевск</h2>
-                        <button type="button" class="button element__like-button element__like-button_enabled" alt="Нравится"></button>
+                        <button type="button" class="button element__like-button"
+                        aria-label="Нравится"></button>
                     </div>
                 </article>
 
@@ -36,7 +39,8 @@
                     <img src="images/elbrus.jpg" alt="Гора Эльбрус" class="element__photo">
                     <div class="element__title">
                         <h2 class="element__place">Гора Эльбрус</h2>
-                        <button type="button" class="button element__like-button element__like-button_enabled" alt="Нравится"></button>
+                        <button type="button" class="button element__like-button"
+                        aria-label="Нравится"></button>
                     </div>
                 </article>
 
@@ -44,7 +48,8 @@
                     <img src="images/dombay.jpg" alt="Домбай" class="element__photo">
                     <div class="element__title">
                         <h2 class="element__place">Домбай</h2>
-                        <button type="button" class="button element__like-button element__like-button_enabled" alt="Нравится"></button>
+                        <button type="button" class="button element__like-button"
+                        aria-label="Нравится"></button>
                     </div>
                 </article>
 
@@ -52,7 +57,8 @@
                     <img src="images/elbrus.jpg" alt="Гора Эльбрус" class="element__photo">
                     <div class="element__title">
                         <h2 class="element__place">Гора Эльбрус</h2>
-                        <button type="button" class="button element__like-button element__like-button_enabled" alt="Нравится"></button>
+                        <button type="button" class="button element__like-button"
+                        aria-label="Нравится"></button>
                     </div>
                 </article>
 
@@ -60,7 +66,8 @@
                     <img src="images/dombay.jpg" alt="Домбай" class="element__photo">
                     <div class="element__title">
                         <h2 class="element__place">Домбай</h2>
-                        <button type="button" class="button element__like-button element__like-button_enabled" alt="Нравится"></button>
+                        <button type="button" class="button element__like-button"
+                        aria-label="Нравится"></button>
                     </div>
                 </article>
 
@@ -68,7 +75,8 @@
                     <img src="images/karachaevsk.jpg" alt="Карачаевск" class="element__photo">
                     <div class="element__title">
                         <h2 class="element__place">Карачаево-Черкесия</h2>
-                        <button type="button" class="button element__like-button element__like-button_enabled" alt="Нравится"></button>
+                        <button type="button" class="button element__like-button"
+                            aria-label="Нравится"></button>
                     </div>
                 </article>
             </section>
@@ -80,16 +88,19 @@
 
         <section class="popup">
             <div class="popup__container">
-                <button type="button" alt="Закрыть" class="button popup__close-button"></button>
+                <button type="button" aria-label="Закрыть" class="button popup__close-button"></button>
                 <form class="popup__form" name="popup">
                     <h2 class="popup__title">Редактировать профиль</h2>
-                    <input class="popup__input" name="userName" type="text" id="userName" value="Жак-Ив Кусто" placeholder="Имя" required>
-                    <input class="popup__input" name="userSpec" type="text" id="userSpec" value="Исследователь океана" placeholder="Профессия" required>
-                    <button type="submit" name="saveButton" class="popup__save-button">Сохранить</button>
+                    <input class="popup__input" name="userName" type="text" id="userName" value="Жак-Ив Кусто"
+                        placeholder="Имя" required>
+                    <input class="popup__input" name="userSpec" type="text" id="userSpec" value="Исследователь океана"
+                        placeholder="Профессия" required>
+                    <button type="submit" name="saveButton" class="popup__save-button" aria-label="Сохранить">Сохранить</button>
                 </form>
             </div>
         </section>
     </div>
     <script src="scripts/index.js"></script>
 </body>
+
 </html>

@@ -10,6 +10,39 @@ let jobInput = formElement.querySelector('#userSpec');
 let profileName = document.querySelector('.profile__name');
 let profileSpeciality = document.querySelector('.profile__speciality');
 
+  const elements = document.querySelector('.elements');
+  const template = document.querySelector('#element-template').content;
+
+  const renderElements = (element) => {
+    const card = template.querySelector('.element').cloneNode(true);
+    const place = card.querySelector('.element__place');
+    const image = card.querySelector('.element__photo');
+    const deleteButton = card.querySelector('.element__delete');
+    const likeButton = card.querySelector('.element__like-button');
+
+    image.src = element.link;
+    image.alt = element.name;
+    place.textContent = element.name;
+
+    likeButton.addEventListener('click', () => {
+        if (!likeButton.classList.contains('element__like-button_enabled')) {
+            likeButton.classList.add('element__like-button_enabled');
+        } else {
+            likeButton.classList.remove('element__like-button_enabled');
+        }
+    })
+
+    deleteButton.addEventListener('click', () => {
+        card.remove();
+    })
+
+    elements.append(card);
+  } 
+
+  initialCards.forEach((card) => {
+    renderElements(card);
+  });
+
 function openPopup() {
     nameInput.value = profileName.textContent;
     jobInput.value = profileSpeciality.textContent;

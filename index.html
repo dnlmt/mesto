@@ -46,36 +46,36 @@
             </article>
         </template>
 
-        <section class="popup" id="profile">
+        <section class="popup popup__profile">
             <div class="popup__container">
-                <button type="button" aria-label="Закрыть" id="profilePopupCloseButton" class="button popup__close-button"></button>
-                <form class="popup__form" name="popup">
+                <button type="button" aria-label="Закрыть" class="button popup__close-button popup__profile_close-button"></button>
+                <form class="popup__form popup__profile_form" name="popup">
                     <h2 class="popup__title">Редактировать профиль</h2>
                     <input class="popup__input" name="userName" type="text" id="userName" value="Жак-Ив Кусто"
                         placeholder="Имя" required>
                     <input class="popup__input" name="userSpec" type="text" id="userSpec" value="Исследователь океана"
                         placeholder="Профессия" required>
-                    <button type="submit" name="saveButton" class="popup__save-button" aria-label="Сохранить">Сохранить</button>
+                    <button type="submit" name="saveButton" class="popup__button" aria-label="Сохранить">Сохранить</button>
                 </form>
             </div>
         </section>
 
-        <section class="popup" id="addCard">
+        <section class="popup popup__add-card">
             <div class="popup__container">
-                <button type="button" aria-label="Закрыть" id="addCardPopupCloseButton" class="button popup__close-button"></button>
-                <form class="popup__form" id="addCardForm" name="popup">
+                <button type="button" aria-label="Закрыть" class="button popup__close-button popup__add-card_close-button"></button>
+                <form class="popup__form popup__add-card_form" name="popup">
                     <h2 class="popup__title">Новое место</h2>
                     <input class="popup__input" name="name" type="text" id="name" placeholder="Название" required>
                     <input class="popup__input" name="link" type="text" id="link" placeholder="Ссылка на картинку" required>
-                    <button type="submit" name="addButton" id="createCard" class="popup__save-button" aria-label="Создать">Создать</button>
+                    <button type="submit" name="addButton" class="popup__button" aria-label="Создать">Создать</button>
                 </form>
             </div>
         </section>
 
-        <section class="popup" id="showImage">
+        <section class="popup popup__show-image">
             <div class="popup__image-background">
                 <div class="popup__image-container">
-                    <button type="button" aria-label="Закрыть" id="closeImage" class="button popup__close-button"></button>
+                    <button type="button" aria-label="Закрыть"class="button popup__close-button button__image_close-button"></button>
                     <img class="popup__image" src="#" alt="">
                     <p class="popup__image-name"></p>
                 </div>
@@ -84,6 +84,7 @@
     </div>
 
     <script src="scripts/cards.js"></script>
+    <script src="scripts/constants.js"></script>
     <script src="scripts/index.js"></script>
 </body>
 

@@ -1,15 +1,15 @@
-const profilePopup = document.querySelector('.popup_profile');
-const addCardPopup = document.querySelector('.popup_add-card');
+const profilePopup = document.querySelector('.edit-profile');
+const addCardPopup = document.querySelector('.add-card');
 const editButton = document.querySelector('.profile__edit-button');
 const addButton = document.querySelector('.profile__add-button');
-const profilePopupCloseButton = document.querySelector('.popup_profile_close-button');
-const addCardPopupCloseButton = document.querySelector('.popup_add-card_close-button');
+const profilePopupCloseButton = document.querySelector('.edit-profile__close-button');
+const addCardPopupCloseButton = document.querySelector('.add-card__close-button');
 
-const imagePopup = document.querySelector('.popup_show-image');
-const closeImageButton = document.querySelector('.button_image_close-button');
+const imagePopup = document.querySelector('.image');
+const closeImageButton = document.querySelector('.image__close-button');
 
-const profilePopupFormElement = document.querySelector('.popup_profile_form');
-const addCardFormElement = document.querySelector('.popup_add-card_form');
+const profilePopupFormElement = document.querySelector('.edit-profile__form');
+const addCardFormElement = document.querySelector('.add-card__form');
 
 const nameInput = profilePopupFormElement.querySelector('#userName');
 const jobInput = profilePopupFormElement.querySelector('#userSpec');

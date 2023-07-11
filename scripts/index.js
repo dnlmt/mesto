@@ -6,7 +6,8 @@ const createCard = (element) => {
     const deleteButton = card.querySelector('.element__delete');
     const likeButton = card.querySelector('.element__like-button');
 
-    
+    const popupImage = document.querySelector('.popup__image');
+    const popupImageName = document.querySelector('.popup__image-name');
 
     image.src = element.link;
     image.alt = element.name;
@@ -25,9 +26,6 @@ const createCard = (element) => {
     })
 
     function showImage() { 
-        const popupImage = document.querySelector('.popup__image');
-        const popupImageName = document.querySelector('.popup__image-name')
-        
         popupImage.src = element.link;
         popupImage.alt = element.name;
         popupImageName.textContent = element.name;

@@ -91,6 +91,18 @@ function addCardFormSubmit (evt) {
     closePopup(addCardPopup);
 }
 
+const closeOnEsc = (evt, popup) => {
+    if (popup.classList.contains('popup_opened') && evt.keyCode == 27) {
+        closePopup(popup);
+    }
+};
+
+const closeByOverlay = (evt, popup) => {
+    if(evt.target.classList.contains('popup')) {
+        closePopup(popup);
+    }
+}
+
 editButton.addEventListener('click', () => {
     nameInput.value = profileName.textContent;
     jobInput.value = profileSpeciality.textContent;
@@ -112,10 +124,34 @@ closeImageButton.addEventListener('click', () => {
     closePopup(imagePopup);
 });
 
-// Прикрепляем обработчик к форме:
-// он будет следить за событием “submit” - «отправка»
+document.addEventListener('keydown', (evt) => {
+    closeOnEsc(evt, addCardPopup);
+});
+
+document.addEventListener('keydown', (evt) => {
+    closeOnEsc(evt, profilePopup);
+});
+
+document.addEventListener('keydown', (evt) => {
+    closeOnEsc(evt, imagePopup);
+});
+
+profilePopup.addEventListener('click', (evt) => {
+    closeByOverlay(evt, profilePopup);
+});
+
+addCardPopup.addEventListener('click', (evt) => {
+    closeByOverlay(evt, addCardPopup);
+});
+
+imagePopup.addEventListener('click', (evt) => {
+    closeByOverlay(evt, imagePopup);
+});
+
 profilePopupFormElement.addEventListener('submit', profileFormSubmit); 
 
 addCardFormElement.addEventListener('submit', addCardFormSubmit);
+
+enableValidation(validationConfig);
 
 

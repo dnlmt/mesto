@@ -55,7 +55,6 @@ const closeOnEsc = (evt) => {
 function openPopup(popup) {
     popup.classList.add('popup_opened');
     document.addEventListener('keydown', closeOnEsc);
-    deleteError(popup.querySelector(validationConfig.formSelector));
   }
 
 function closePopup(popup) {
@@ -105,6 +104,7 @@ editButton.addEventListener('click', () => {
     nameInput.value = profileName.textContent;
     jobInput.value = profileSpeciality.textContent;
     openPopup(profilePopup);
+    deleteError(profilePopup.querySelector(validationConfig.formSelector));
 });
 
 addButton.addEventListener('click', () => {

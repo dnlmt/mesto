@@ -1,16 +1,29 @@
-function enableValidation(config) {
-    
-    const showInputError = (form, input) => {
-        input.classList.add(config.inputErrorClass);
-        const span = form.querySelector(`.${input.id}-error`);
-        span.textContent = input.validationMessage;
-    };
+const showInputError = (form, input) => {
+    input.classList.add(validationConfig.inputErrorClass);
+    const span = form.querySelector(`.${input.id}-error`);
+    span.textContent = input.validationMessage;
+};
 
-    const hideInputError = (form, input) => {
-        input.classList.remove(config.inputErrorClass);
-        const span = form.querySelector(`.${input.id}-error`);
-        span.textContent = '';
-    };
+const hideInputError = (form, input) => {
+    input.classList.remove(validationConfig.inputErrorClass);
+    const span = form.querySelector(`.${input.id}-error`);
+    span.textContent = '';
+};
+
+const deleteError = (form) => {
+    const inputs = Array.from(form.querySelectorAll(validationConfig.inputSelector));
+    
+    inputs.forEach(input => {
+            hideInputError(form, input)
+    });
+};
+
+const disableButton = (button) => {
+    button.classList.add(validationConfig.inactiveButtonClass);
+    button.disabled = true
+}
+
+function enableValidation(config) {
 
     const isValid = (form, input) => {
         input.validity.valid.log;
@@ -54,3 +67,4 @@ function enableValidation(config) {
         setEventListeners(form)
     })
 }
+

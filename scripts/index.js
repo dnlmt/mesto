@@ -1,3 +1,9 @@
+function showImage(element) { 
+    popupImage.src = element.link;
+    popupImage.alt = element.name;
+    popupImageName.textContent = element.name;
+    openPopup(imagePopup);
+}
 
 const createCard = (element) => {
     const card = template.querySelector('.element').cloneNode(true);
@@ -5,9 +11,6 @@ const createCard = (element) => {
     const image = card.querySelector('.element__photo');
     const deleteButton = card.querySelector('.element__delete');
     const likeButton = card.querySelector('.element__like-button');
-
-    const popupImage = document.querySelector('.popup__image');
-    const popupImageName = document.querySelector('.popup__image-name');
 
     image.src = element.link;
     image.alt = element.name;
@@ -25,14 +28,7 @@ const createCard = (element) => {
         card.remove();
     })
 
-    function showImage() { 
-        popupImage.src = element.link;
-        popupImage.alt = element.name;
-        popupImageName.textContent = element.name;
-        imagePopup.classList.add('popup_opened');
-    }
-
-    image.addEventListener('click', showImage);
+    image.addEventListener('click', () => showImage(element));
 
     return card;
   }
@@ -46,27 +42,32 @@ const createCard = (element) => {
     renderCard(card);
  }
   
-  initialCards.reverse().forEach((item) => {
+initialCards.reverse().forEach((item) => {
     addCard(item);
   });
 
-  function openPopup(popup) {
+const closeOnEsc = (evt) => { 
+    if (evt.keyCode == 27) {
+        closePopup(document.querySelector('.popup_opened'));
+    }
+};
+
+function openPopup(popup) {
     popup.classList.add('popup_opened');
+    document.addEventListener('keydown', closeOnEsc);
+    deleteError(popup.querySelector(validationConfig.formSelector));
   }
 
-  function closePopup(popup) {
+function closePopup(popup) {
     popup.classList.remove('popup_opened');
+    document.removeEventListener('keydown', closeOnEsc);
 }
 
-// Обработчик «отправки» формы, хотя пока
-// она никуда отправляться не будет
-function profileFormSubmit (evt) {
-    evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
-                                                // Так мы можем определить свою логику отправки.
-                                                // О том, как это делать, расскажем позже.
+function submitProfileForm (evt) {
+    evt.preventDefault();
 
-    let userNameInput = nameInput.value;
-    let userJobInput = jobInput.value;
+    const userNameInput = nameInput.value;
+    const userJobInput = jobInput.value;
 
     profileName.textContent = userNameInput;
     profileSpeciality.textContent = userJobInput;
@@ -74,7 +75,7 @@ function profileFormSubmit (evt) {
     closePopup(profilePopup);
 }
 
-function addCardFormSubmit (evt) {
+function submitCardForm (evt) {
     evt.preventDefault();
 
     const newCard = 
@@ -88,14 +89,11 @@ function addCardFormSubmit (evt) {
     placeInput.value = '';
     imageInput.value = '';
 
-    closePopup(addCardPopup);
-}
+    disableButton(cardPopup.querySelector(validationConfig.submitButtonSelector));
 
-const closeOnEsc = (evt, popup) => {
-    if (popup.classList.contains('popup_opened') && evt.keyCode == 27) {
-        closePopup(popup);
-    }
-};
+    closePopup(cardPopup);
+
+}
 
 const closeByOverlay = (evt, popup) => {
     if(evt.target.classList.contains('popup')) {
@@ -110,47 +108,35 @@ editButton.addEventListener('click', () => {
 });
 
 addButton.addEventListener('click', () => {
-    openPopup(addCardPopup);
+    openPopup(cardPopup);
 })
 
-profilePopupCloseButton.addEventListener('click', () => {
+buttonClosePopupProfile.addEventListener('click', () => {
     closePopup(profilePopup);
 });
-addCardPopupCloseButton.addEventListener('click', () => {
-    closePopup(addCardPopup);
+buttonClosePopupCard.addEventListener('click', () => {
+    closePopup(cardPopup);
 });
 
-closeImageButton.addEventListener('click', () => {
+buttonCloseImage.addEventListener('click', () => {
     closePopup(imagePopup);
-});
-
-document.addEventListener('keydown', (evt) => {
-    closeOnEsc(evt, addCardPopup);
-});
-
-document.addEventListener('keydown', (evt) => {
-    closeOnEsc(evt, profilePopup);
-});
-
-document.addEventListener('keydown', (evt) => {
-    closeOnEsc(evt, imagePopup);
 });
 
 profilePopup.addEventListener('click', (evt) => {
     closeByOverlay(evt, profilePopup);
 });
 
-addCardPopup.addEventListener('click', (evt) => {
-    closeByOverlay(evt, addCardPopup);
+cardPopup.addEventListener('click', (evt) => {
+    closeByOverlay(evt, cardPopup);
 });
 
 imagePopup.addEventListener('click', (evt) => {
     closeByOverlay(evt, imagePopup);
 });
 
-profilePopupFormElement.addEventListener('submit', profileFormSubmit); 
+profileFormElement.addEventListener('submit', submitProfileForm); 
 
-addCardFormElement.addEventListener('submit', addCardFormSubmit);
+cardFormElement.addEventListener('submit', submitCardForm);
 
 enableValidation(validationConfig);
 

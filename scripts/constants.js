@@ -7,26 +7,29 @@ const validationConfig = {
 };
 
 const profilePopup = document.querySelector('.edit-profile');
-const addCardPopup = document.querySelector('.add-card');
+const cardPopup = document.querySelector('.add-card');
 const editButton = document.querySelector('.profile__edit-button');
 const addButton = document.querySelector('.profile__add-button');
-const profilePopupCloseButton = document.querySelector('.edit-profile__close-button');
-const addCardPopupCloseButton = document.querySelector('.add-card__close-button');
+const buttonClosePopupProfile = document.querySelector('.edit-profile__close-button');
+const buttonClosePopupCard = document.querySelector('.add-card__close-button');
 
 const imagePopup = document.querySelector('.image');
-const closeImageButton = document.querySelector('.image__close-button');
+const buttonCloseImage = document.querySelector('.image__close-button');
 
-const profilePopupFormElement = document.querySelector('.edit-profile__form');
-const addCardFormElement = document.querySelector('.add-card__form');
+const profileFormElement = document.querySelector('.edit-profile__form');
+const cardFormElement = document.querySelector('.add-card__form');
 
-const nameInput = profilePopupFormElement.querySelector('#userName');
-const jobInput = profilePopupFormElement.querySelector('#userSpec');
+const nameInput = profileFormElement.querySelector('#userName');
+const jobInput = profileFormElement.querySelector('#userSpec');
 
-const placeInput = addCardFormElement.querySelector('#name');
-const imageInput = addCardFormElement.querySelector('#link');
+const placeInput = cardFormElement.querySelector('#name');
+const imageInput = cardFormElement.querySelector('#link');
 
 const profileName = document.querySelector('.profile__name');
 const profileSpeciality = document.querySelector('.profile__speciality');
+
+const popupImage = document.querySelector('.popup__image');
+const popupImageName = document.querySelector('.popup__image-name');
 
 const elements = document.querySelector('.elements');
 const template = document.querySelector('#element-template').content;

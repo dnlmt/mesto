@@ -1,45 +1,13 @@
-function showImage(element) { 
-    popupImage.src = element.link;
-    popupImage.alt = element.name;
-    popupImageName.textContent = element.name;
-    openPopup(imagePopup);
-}
-
-const createCard = (element) => {
-    const card = template.querySelector('.element').cloneNode(true);
-    const place = card.querySelector('.element__place');
-    const image = card.querySelector('.element__photo');
-    const deleteButton = card.querySelector('.element__delete');
-    const likeButton = card.querySelector('.element__like-button');
-
-    image.src = element.link;
-    image.alt = element.name;
-    place.textContent = element.name;   
-
-    likeButton.addEventListener('click', () => {
-        if (!likeButton.classList.contains('element__like-button_enabled')) {
-            likeButton.classList.add('element__like-button_enabled');
-        } else {
-            likeButton.classList.remove('element__like-button_enabled');
-        }
-    })
-
-    deleteButton.addEventListener('click', () => {
-        card.remove();
-    })
-
-    image.addEventListener('click', () => showImage(element));
-
-    return card;
-  }
+import Card from './Card.js';
+import FormValidator from './FormValidator.js';
 
  const renderCard = (card) => {
     elements.prepend(card);
  } 
-  
+
  const addCard = (item) => {
-    const card = createCard(item); 
-    renderCard(card);
+    const card = new Card(item); 
+    renderCard(card.getView());
  }
   
 initialCards.reverse().forEach((item) => {
@@ -88,7 +56,7 @@ function submitCardForm (evt) {
     placeInput.value = '';
     imageInput.value = '';
 
-    disableButton(cardPopup.querySelector(validationConfig.submitButtonSelector));
+    cardFormValidator.disableButton(cardPopup.querySelector(validationConfig.submitButtonSelector));
 
     closePopup(cardPopup);
 
@@ -104,7 +72,7 @@ editButton.addEventListener('click', () => {
     nameInput.value = profileName.textContent;
     jobInput.value = profileSpeciality.textContent;
     openPopup(profilePopup);
-    deleteError(profilePopup.querySelector(validationConfig.formSelector));
+    profileFormValidator.deleteError(profilePopup.querySelector(validationConfig.formSelector));
 });
 
 addButton.addEventListener('click', () => {
@@ -136,8 +104,14 @@ imagePopup.addEventListener('click', (evt) => {
 
 profileFormElement.addEventListener('submit', submitProfileForm); 
 
-cardFormElement.addEventListener('submit', submitCardForm);
+cardFormElement.addEventListener('submit', submitCardForm)
 
-enableValidation(validationConfig);
+const profileFormValidator = new FormValidator(validationConfig, profileFormElement);
+profileFormValidator.enableValidation();
+
+const cardFormValidator = new FormValidator(validationConfig, cardFormElement);
+cardFormValidator.enableValidation();
+
+export default openPopup;
 
 

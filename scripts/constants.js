@@ -28,8 +28,4 @@ const imageInput = cardFormElement.querySelector('#link');
 const profileName = document.querySelector('.profile__name');
 const profileSpeciality = document.querySelector('.profile__speciality');
 
-const popupImage = document.querySelector('.popup__image');
-const popupImageName = document.querySelector('.popup__image-name');
-
 const elements = document.querySelector('.elements');
-const template = document.querySelector('#element-template').content;

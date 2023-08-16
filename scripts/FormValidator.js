@@ -1,5 +1,5 @@
 class FormValidator {
-    constructor (config, form) {
+    constructor(config, form) {
         this._config = config;
         this._form = form;
         this._inputs = Array.from(this._form.querySelectorAll(this._config.inputSelector));
@@ -24,11 +24,10 @@ class FormValidator {
 
     _toggleButtonState() {
         if (this._hasInvalidValue(this._inputs)) {
-          this._button.classList.add(this._config.inactiveButtonClass);
-          this._button.disabled = true
+            this.disableButton()
         } else {
-          this._button.classList.remove(this._config.inactiveButtonClass);
-          this._button.disabled = false
+            this._button.classList.remove(this._config.inactiveButtonClass);
+            this._button.disabled = false
         }
     };
 
@@ -48,25 +47,22 @@ class FormValidator {
                 this._isValid(input);
                 this._toggleButtonState();
             })
-    })}
+        })
+    }
 
     deleteError() {
         this._inputs.forEach(input => {
-        this._hideInputError(input)
+            this._hideInputError(input)
         });
     };
-    
+
     disableButton() {
         this._button.classList.add(this._config.inactiveButtonClass);
         this._button.disabled = true
-    }
+    };
 
     enableValidation() {
-        const forms = Array.from(document.querySelectorAll(this._config.formSelector));
-
-        forms.forEach(form => {
-            this._setEventListeners(form)
-        })
+        this._setEventListeners(this._form);
     }
 }
 

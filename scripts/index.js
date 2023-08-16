@@ -1,21 +1,33 @@
 import Card from './Card.js';
 import FormValidator from './FormValidator.js';
 
- const renderCard = (card) => {
-    elements.prepend(card);
- } 
+function handleCardClick(name, link) {
+    popupImage.src = link;
+    popupImage.alt = name;
+    popupImageName.textContent = name;
+    openPopup(imagePopup);
+}
 
- const addCard = (item) => {
-    const card = new Card(item); 
-    renderCard(card.getView());
- }
-  
+function createCard(item) {
+    const card = new Card(item, '#element-template', handleCardClick);
+    return card.getView();
+}
+
+const renderCard = (card) => {
+    elements.prepend(card);
+}
+
+const addCard = (item) => {
+    const card = createCard(item)
+    renderCard(card);
+}
+
 initialCards.reverse().forEach((item) => {
     addCard(item);
-  });
+});
 
-const closeOnEsc = (evt) => { 
-    if (evt.keyCode == 27) {
+const closeOnEsc = (evt) => {
+    if (evt.key === 'Escape') {
         closePopup(document.querySelector('.popup_opened'));
     }
 };
@@ -23,14 +35,14 @@ const closeOnEsc = (evt) => {
 function openPopup(popup) {
     popup.classList.add('popup_opened');
     document.addEventListener('keydown', closeOnEsc);
-  }
+}
 
 function closePopup(popup) {
     popup.classList.remove('popup_opened');
     document.removeEventListener('keydown', closeOnEsc);
 }
 
-function submitProfileForm (evt) {
+function submitProfileForm(evt) {
     evt.preventDefault();
 
     const userNameInput = nameInput.value;
@@ -38,15 +50,15 @@ function submitProfileForm (evt) {
 
     profileName.textContent = userNameInput;
     profileSpeciality.textContent = userJobInput;
-    
+
     closePopup(profilePopup);
 }
 
-function submitCardForm (evt) {
+function submitCardForm(evt) {
     evt.preventDefault();
 
-    const newCard = 
-        {
+    const newCard =
+    {
         name: placeInput.value,
         link: imageInput.value
     }
@@ -56,62 +68,49 @@ function submitCardForm (evt) {
     placeInput.value = '';
     imageInput.value = '';
 
-    cardFormValidator.disableButton(cardPopup.querySelector(validationConfig.submitButtonSelector));
+    cardFormValidator.disableButton();
 
     closePopup(cardPopup);
 
-}
-
-const closeByOverlay = (evt, popup) => {
-    if(evt.target.classList.contains('popup')) {
-        closePopup(popup);
-    }
 }
 
 editButton.addEventListener('click', () => {
     nameInput.value = profileName.textContent;
     jobInput.value = profileSpeciality.textContent;
     openPopup(profilePopup);
-    profileFormValidator.deleteError(profilePopup.querySelector(validationConfig.formSelector));
+    profileFormValidator.deleteError();
 });
 
 addButton.addEventListener('click', () => {
     openPopup(cardPopup);
 })
 
-buttonClosePopupProfile.addEventListener('click', () => {
-    closePopup(profilePopup);
-});
-buttonClosePopupCard.addEventListener('click', () => {
-    closePopup(cardPopup);
-});
+popups.forEach((popup) => {
+    popup.addEventListener('mousedown', (evt) => {
+        if (evt.target.classList.contains('popup_opened')) {
+            closePopup(popup)
+        }
+        if (evt.target.classList.contains('popup__close')) {
+            closePopup(popup)
+        }
+    })
+})
 
-buttonCloseImage.addEventListener('click', () => {
-    closePopup(imagePopup);
-});
-
-profilePopup.addEventListener('click', (evt) => {
-    closeByOverlay(evt, profilePopup);
-});
-
-cardPopup.addEventListener('click', (evt) => {
-    closeByOverlay(evt, cardPopup);
-});
-
-imagePopup.addEventListener('click', (evt) => {
-    closeByOverlay(evt, imagePopup);
-});
-
-profileFormElement.addEventListener('submit', submitProfileForm); 
+profileFormElement.addEventListener('submit', submitProfileForm);
 
 cardFormElement.addEventListener('submit', submitCardForm)
 
-const profileFormValidator = new FormValidator(validationConfig, profileFormElement);
-profileFormValidator.enableValidation();
+const enableValidation = (config) => {
+    const formList = Array.from(document.querySelectorAll(config.formSelector))
+    formList.forEach((formElement) => {
+        const validator = new FormValidator(config, formElement)
+        const formName = formElement.getAttribute('name')
 
-const cardFormValidator = new FormValidator(validationConfig, cardFormElement);
-cardFormValidator.enableValidation();
+        formValidators[formName] = validator;
+        validator.enableValidation();
+    });
+};
 
-export default openPopup;
+enableValidation(validationConfig);
 
 

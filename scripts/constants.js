@@ -12,6 +12,8 @@ const editButton = document.querySelector('.profile__edit-button');
 const addButton = document.querySelector('.profile__add-button');
 const buttonClosePopupProfile = document.querySelector('.edit-profile__close-button');
 const buttonClosePopupCard = document.querySelector('.add-card__close-button');
+const popups = document.querySelectorAll('.popup');
+const formValidators = {};
 
 const imagePopup = document.querySelector('.image');
 const buttonCloseImage = document.querySelector('.image__close-button');
@@ -24,6 +26,9 @@ const jobInput = profileFormElement.querySelector('#userSpec');
 
 const placeInput = cardFormElement.querySelector('#name');
 const imageInput = cardFormElement.querySelector('#link');
+
+const popupImage = document.querySelector('.popup__image');
+const popupImageName = document.querySelector('.popup__image-name');
 
 const profileName = document.querySelector('.profile__name');
 const profileSpeciality = document.querySelector('.profile__speciality');

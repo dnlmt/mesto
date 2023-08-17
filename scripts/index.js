@@ -54,8 +54,6 @@ function submitProfileForm(evt) {
     closePopup(profilePopup);
 }
 
-const cardFormValidator = new FormValidator(validationConfig, cardFormElement);
-
 function submitCardForm(evt) {
     evt.preventDefault();
 
@@ -70,19 +68,17 @@ function submitCardForm(evt) {
     placeInput.value = '';
     imageInput.value = '';
 
-    cardFormValidator.disableButton();
+    formValidators[cardFormElement.getAttribute('name')].disableButton();
 
     closePopup(cardPopup);
 
 }
 
-const profileFormValidator = new FormValidator(validationConfig, profileFormElement);
-
 editButton.addEventListener('click', () => {
     nameInput.value = profileName.textContent;
     jobInput.value = profileSpeciality.textContent;
     openPopup(profilePopup);
-    profileFormValidator.deleteError();
+    formValidators[profileFormElement.getAttribute('name')].deleteError();
 });
 
 addButton.addEventListener('click', () => {
@@ -105,14 +101,14 @@ profileFormElement.addEventListener('submit', submitProfileForm);
 cardFormElement.addEventListener('submit', submitCardForm)
 
 const enableValidation = (config) => {
-  const formList = Array.from(document.querySelectorAll(config.formSelector))
-  formList.forEach((formElement) => {
-    const validator = new FormValidator(config, formElement)
-    const formName = formElement.getAttribute('name')
+    const formList = Array.from(document.querySelectorAll(config.formSelector))
+    formList.forEach((formElement) => {
+        const validator = new FormValidator(config, formElement)
+        const formName = formElement.getAttribute('name')
 
-    formValidators[formName] = validator;
-    validator.enableValidation();
-  });
+        formValidators[formName] = validator;
+        validator.enableValidation();
+    });
 };
 
 enableValidation(validationConfig);

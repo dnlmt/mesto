@@ -1,3 +1,6 @@
+import '../pages/index.css';
+import { validationConfig, editButton, addButton, formValidators, profileFormElement, cardFormElement, placeInput, imageInput, profileName, profileSpeciality, elements } from './constants.js';
+import initialCards from './cards.js'
 import Card from './Card.js';
 import FormValidator from './FormValidator.js';
 import Popup from './Popup.js';

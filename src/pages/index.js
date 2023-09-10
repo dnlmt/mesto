@@ -3,7 +3,6 @@ import { validationConfig, editButton, addButton, formValidators, profileFormEle
 import initialCards from '../utils/cards.js'
 import Card from '../components/Card.js';
 import FormValidator from '../components/FormValidator.js';
-import Popup from '../components/Popup.js';
 import Section from '../components/Section.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
@@ -27,7 +26,7 @@ imagePopup.setEventListeners();
 const userInfo = new UserInfo({ name: '.profile__name', spec: '.profile__speciality' });
 
 function submitProfileForm(inputValues) {
-    const {userName: name, userSpec: spec} = inputValues;
+    const { userName: name, userSpec: spec } = inputValues;
 
     userInfo.setUserInfo({ name, spec });
 

@@ -1,5 +1,5 @@
 import '../pages/index.css';
-import { validationConfig, editButton, addButton, formValidators, profileFormElement, cardFormElement, placeInput, imageInput, elements } from '../utils/constants.js';
+import { validationConfig, editButton, addButton, formValidators, profileFormElement, cardFormElement, placeInput, imageInput } from '../utils/constants.js';
 import initialCards from '../utils/cards.js'
 import Card from '../components/Card.js';
 import FormValidator from '../components/FormValidator.js';

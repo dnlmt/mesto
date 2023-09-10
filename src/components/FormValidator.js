@@ -32,7 +32,6 @@ class FormValidator {
     };
 
     _isValid(input) {
-        input.validity.valid.log;
         if (!input.validity.valid) {
             this._showInputError(input)
         } else {
@@ -50,7 +49,7 @@ class FormValidator {
         })
     }
 
-    deleteError() {
+    deleteErrors() {
         this._inputs.forEach(input => {
             this._hideInputError(input)
         });
@@ -62,7 +61,7 @@ class FormValidator {
     };
 
     enableValidation() {
-        this._setEventListeners(this._form);
+        this._setEventListeners();
     }
 }
 

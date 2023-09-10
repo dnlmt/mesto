@@ -6,7 +6,7 @@
 
 **Технологии**
 
-* HTML5, CCS3, JavaScript
+* HTML5, CCS3, JavaScript, ООП, Es6Modules, Webpack
 
 **Ссылка**
 

@@ -17,12 +17,9 @@ class Card {
 
     _setData() {
         const place = this._newCard.querySelector('.element__place');
-        const image = this._newCard.querySelector('.element__photo');
-        image.src = this._link;
-        image.alt = this._name;
+        this._cardImage.src = this._link;
+        this._cardImage.alt = this._name;
         place.textContent = this._name;
-
-        return image;
     }
 
     _setListeners() {
@@ -39,13 +36,14 @@ class Card {
             this._newCard = null;
         });
 
-        this._setData().addEventListener('click', () => {
+        this._cardImage.addEventListener('click', () => {
             this._handleCardClick(this._name, this._link)
         });
     }
 
     getView() {
         this._newCard = this._getTemplate();
+        this._cardImage = this._newCard.querySelector('.element__photo');
         this._setData();
         this._setListeners();
 

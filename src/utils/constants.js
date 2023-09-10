@@ -16,7 +16,4 @@ export const cardFormElement = document.querySelector('.add-card__form');
 export const placeInput = cardFormElement.querySelector('#name');
 export const imageInput = cardFormElement.querySelector('#link');
 
-export const profileName = document.querySelector('.profile__name');
-export const profileSpeciality = document.querySelector('.profile__speciality');
-
 export const elements = document.querySelector('.elements');

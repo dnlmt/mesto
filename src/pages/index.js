@@ -33,16 +33,9 @@ function submitProfileForm(inputValues) {
     profilePopup.close();
 }
 
-function submitCardForm() {
-    const newCard =
-    {
-        name: placeInput.value,
-        link: imageInput.value
-    }
-
-    const card = createCard(newCard)
-    section.addItem(card);
-
+function submitCardForm(inputValues) {
+    const card = createCard(inputValues) 
+    section.addItem(card); 
     cardPopup.close();
 }
 

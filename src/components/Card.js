@@ -1,9 +1,14 @@
 class Card {
-    constructor(card, template, handleCardClick) {
-        this._name = card.name;
-        this._link = card.link;
+    constructor({ name, link, _id, likes }, template, handleCardClick, handleDeleteCard, like) {
+        this._name = name;
+        this._link = link;
+        this._id = _id;
+        this._likes = likes;
         this._template = template;
         this._handleCardClick = handleCardClick;
+        // this._openDeletePopup = openDeletePopup;
+        this._like = like;
+        this._handleDeleteCard = handleDeleteCard;
     }
 
     _getTemplate() {
@@ -17,9 +22,15 @@ class Card {
 
     _setData() {
         const place = this._newCard.querySelector('.element__place');
+        const likes = this._newCard.querySelector('.element__like-counter');
         this._cardImage.src = this._link;
         this._cardImage.alt = this._name;
         place.textContent = this._name;
+        if (this._likes) {
+            likes.textContent = this._likes.length }
+        else {
+            likes.textContent = 0;
+        }
     }
 
     _setListeners() {
@@ -27,13 +38,13 @@ class Card {
 
         likeButton.addEventListener("click", () => {
             likeButton.classList.toggle("element__like-button_enabled");
+            this._like();
         });
 
         const deleteButton = this._newCard.querySelector('.element__delete');
 
         deleteButton.addEventListener('click', () => {
-            this._newCard.remove();
-            this._newCard = null;
+            this._handleDeleteCard(this._id);
         });
 
         this._cardImage.addEventListener('click', () => {
@@ -48,6 +59,11 @@ class Card {
         this._setListeners();
 
         return this._newCard;
+    }
+
+    remove() {
+        this._newCard.remove();
+        this._newCard = null;
     }
 }
 

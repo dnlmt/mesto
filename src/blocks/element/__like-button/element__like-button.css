@@ -6,7 +6,6 @@
         object-fit: cover;
         object-position: center;
         align-self: center;
-        margin-left: auto;
 }
 
 .element__like-button:hover {

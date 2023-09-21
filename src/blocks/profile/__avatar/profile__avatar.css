@@ -12,7 +12,7 @@
     position: relative;
 }
 
-.profile__avatar:hover .profile__avatar_icon {
+.profile__avatar:hover .profile__avatar-icon {
     opacity: 1;
     cursor: pointer;
 }

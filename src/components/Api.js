@@ -71,6 +71,18 @@ class Api {
             });
     }
 
+    setAvatar(data) {
+        return fetch(`${this._url}/users/me/avatar`, {
+            method: 'PATCH',
+            headers: this._headers,
+            body: JSON.stringify(data)
+        })
+            .then((res) => this._safeResponse(res))
+            .catch((err) => {
+                console.log(err); // выведем ошибку в консоль
+            });
+    }
+
     like(id) {
         return fetch(`${this._url}/cards/${id}/likes`, {
             method: 'PUT',

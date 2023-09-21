@@ -1,3 +1,5 @@
+import {profileAvatar} from "../utils/constants";
+
 class UserInfo {
     constructor({ name, about }) {
         this._name = document.querySelector(name);
@@ -13,6 +15,10 @@ class UserInfo {
     setUserInfo({ name, about }) {
         this._name.textContent = name;
         this._about.textContent = about;
+    }
+
+    setAvatar(selector, avatar) {
+        selector.style.backgroundImage = `url(${avatar})`;
     }
 }
 

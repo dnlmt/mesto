@@ -11,14 +11,6 @@ class Section {
         addItem(elem) {
             this._container.prepend(this._renderer(elem));
         }
-
-    // render(cards) {
-    //     cards.reverse().forEach((this._renderer));
-    // }
-    //
-    // addItem(elem) {
-    //     this._container.prepend(elem);
-    // }
 }
 
 export default Section;

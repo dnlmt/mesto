@@ -42,12 +42,7 @@ class Card {
     }
 
     updateLikes(id) {
-        // if (this._likes) {
             this._likeSelector.textContent = id.likes.length;
-        // }
-        // else {
-        //     this._likeSelector.textContent = 0;
-        // }
     }
 
     _setListeners() {

@@ -19,7 +19,6 @@ import PopupWithForm from '../components/PopupWithForm.js';
 import UserInfo from '../components/UserInfo.js';
 import Api from "../components/Api.js";
 import PopupWithSubmit from "../components/PopupWithSubmit";
-import card from "../components/Card.js";
 
 const api = new Api({
     url: 'https://mesto.nomoreparties.co/v1/cohort-75',

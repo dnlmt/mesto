@@ -15,7 +15,7 @@ export const formValidators = {};
 
 export const profileName = document.querySelector('.profile__name');
 export const profileSpeciality = document.querySelector('.profile__speciality');
-export const profileAvatar = document.querySelector('.profile__avatar');
 
 export const profileFormElement = document.querySelector('.edit-profile__form');
 export const cardFormElement = document.querySelector('.add-card__form');
+export const avatarFormElement = document.querySelector('.avatar-form');

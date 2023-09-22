@@ -16,10 +16,7 @@ class Api {
             method: 'GET',
             headers: this._headers
         })
-            .then((res) => this._safeResponse(res))
-            .catch((err) => {
-                console.log(err); // выведем ошибку в консоль
-            });
+            .then((res) => this._safeResponse(res));
     }
 
     setUserInfo(info) {
@@ -31,10 +28,7 @@ class Api {
                 about: info.about
             })
         })
-           .then((res) => this._safeResponse(res))
-           .catch((err) => {
-               console.log(err); // выведем ошибку в консоль
-           });
+           .then((res) => this._safeResponse(res));
     }
 
     getInitialCards() {
@@ -42,10 +36,7 @@ class Api {
             method: 'GET',
             headers: this._headers
         })
-            .then((res) => this._safeResponse(res))
-            .catch((err) => {
-                console.log(err); // выведем ошибку в консоль
-            });
+            .then((res) => this._safeResponse(res));
     }
 
     addCard(card) {
@@ -54,10 +45,7 @@ class Api {
             headers: this._headers,
             body: JSON.stringify(card)
         })
-            .then((res) => this._safeResponse(res))
-            .catch((err) => {
-                console.log(err); // выведем ошибку в консоль
-            });
+            .then((res) => this._safeResponse(res));
     }
 
     deleteCard(id) {
@@ -65,10 +53,7 @@ class Api {
             method: 'DELETE',
             headers: this._headers
         })
-            .then((res) => this._safeResponse(res))
-            .catch((err) => {
-                console.log(err); // выведем ошибку в консоль
-            });
+            .then((res) => this._safeResponse(res));
     }
 
     setAvatar(data) {
@@ -77,10 +62,7 @@ class Api {
             headers: this._headers,
             body: JSON.stringify(data)
         })
-            .then((res) => this._safeResponse(res))
-            .catch((err) => {
-                console.log(err); // выведем ошибку в консоль
-            });
+            .then((res) => this._safeResponse(res));
     }
 
     like(id) {
@@ -88,20 +70,14 @@ class Api {
             method: 'PUT',
             headers: this._headers,
         })
-            .then((res) => this._safeResponse(res))
-            .catch((err) => {
-                console.log(err); // выведем ошибку в консоль
-            });
+            .then((res) => this._safeResponse(res));
     }
     unlike(id) {
         return fetch(`${this._url}/cards/${id}/likes`, {
             method: 'DELETE',
             headers: this._headers,
         })
-            .then((res) => this._safeResponse(res))
-            .catch((err) => {
-                console.log(err); // выведем ошибку в консоль
-            });
+            .then((res) => this._safeResponse(res));
     }
 }
 

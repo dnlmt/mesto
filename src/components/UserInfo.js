@@ -1,9 +1,10 @@
 import {profileAvatar} from "../utils/constants";
 
 class UserInfo {
-    constructor({ name, about }) {
+    constructor({ name, about, avatar }) {
         this._name = document.querySelector(name);
         this._about = document.querySelector(about);
+        this._avatar = document.querySelector(avatar);
     }
 
     getUserInfo() {
@@ -17,8 +18,8 @@ class UserInfo {
         this._about.textContent = about;
     }
 
-    setAvatar(selector, avatar) {
-        selector.style.backgroundImage = `url(${avatar})`;
+    setAvatar(newAvatar) {
+        this._avatar.style.backgroundImage = `url(${newAvatar})`;
     }
 }
 

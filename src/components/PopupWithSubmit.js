@@ -1,6 +1,7 @@
 import Popup from "./Popup.js";
 
 class PopupWithSubmit extends Popup {
+    _card;
     constructor(popup, submit, waiting) {
         super(popup);
         this._submit = submit;
@@ -10,14 +11,18 @@ class PopupWithSubmit extends Popup {
         this._waitingMessage = waiting;
     }
 
-    setEventListeners(id, card) {
+    setEventListeners() {
         super.setEventListeners();
-        this._form.addEventListener('submit', this._form.addEventListener('submit', evt => {
+        this._form.addEventListener('submit', evt => {
                 evt.preventDefault();
                 this._waiting();
-                this._submit(id, card);
-            })
+                this._submit(this._card);
+            }
         );
+    }
+
+    setCard(card) {
+        this._card = card;
     }
 
     _waiting() {

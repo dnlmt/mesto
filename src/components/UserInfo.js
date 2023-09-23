@@ -5,6 +5,12 @@ class UserInfo {
         this._avatar = document.querySelector(avatar);
     }
 
+    getUserInfo() {
+        const userName = this._name.textContent;
+        const userSpec = this._about.textContent;
+        return { userName, userSpec }
+    }
+
     setUserInfo({ name, about }) {
         this._name.textContent = name;
         this._about.textContent = about;

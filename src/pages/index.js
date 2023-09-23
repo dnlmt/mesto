@@ -6,8 +6,6 @@ import {
     formValidators,
     profileFormElement,
     cardFormElement,
-    profileName,
-    profileSpeciality,
     changeAvatarButton,
     avatarFormElement
 } from '../utils/constants.js';
@@ -30,20 +28,20 @@ const api = new Api({
 
 let userId = '';
 const userInfo = new UserInfo({ name: '.profile__name', about: '.profile__speciality', avatar: '.profile__avatar' });
-const section = new Section({ renderer: (item) => {
-        const card = new Card(item, '#element-template', handleCardClick, handleDeletePopup, like, userId)
-        deletePopup.setCard(card);
-        return card.getView();
+const section = new Section({ renderer: item => createCard(item) }, '.elements');
+
+function createCard(item) {
+    const card = new Card(item, '#element-template', handleCardClick, handleDeletePopup, like, userId)
+    return card.getView();
 }
-}, '.elements');
+
 Promise.all([
     api.getUserInfo(),
     api.getInitialCards()
 ])
     .then(([info, cards]) => {
         userId = info._id;
-        profileName.textContent = info.name;
-        profileSpeciality.textContent = info.about;
+        userInfo.setUserInfo(info);
         userInfo.setAvatar(info.avatar)
         section.render(cards);
 })
@@ -58,18 +56,18 @@ function handleCardClick(name, link) {
 function like(card) {
     if (card.checkLike()) {
         api.unlike(card._id)
-            .then((id) => {
-                card.toggleLike();
-                card.updateLikes(id);
+            .then((card) => {
+                this.toggleLike();
+                this.updateLikes(card);
             })
             .catch((err) => {
                 console.log(err); // выведем ошибку в консоль
             })
     } else {
         api.like(card._id)
-            .then((id) => {
-                card.toggleLike();
-                card.updateLikes(id);
+            .then((card) => {
+                this.toggleLike();
+                this.updateLikes(card);
             })
             .catch((err) => {
                 console.log(err); // выведем ошибку в консоль
@@ -155,13 +153,8 @@ function submitCardForm(inputValues) {
 }
 
 editButton.addEventListener('click', () => {
-    api.getUserInfo()
-        .then((info) => {
-            profilePopup.setInputValues({ userName: info.name, userSpec: info.about })
-        })
-        .catch((err) => {
-            console.log(err); // выведем ошибку в консоль
-        })
+    console.log(userInfo.getUserInfo())
+    profilePopup.setInputValues(userInfo.getUserInfo());
     profilePopup.open();
     formValidators[profileFormElement.getAttribute('name')].deleteErrors();
 });
@@ -172,8 +165,8 @@ addButton.addEventListener('click', () => {
 })
 
 changeAvatarButton.addEventListener('click', () => {
-    avatarFormElement.reset();
     avatarPopup.open();
+    formValidators[avatarFormElement.getAttribute('name')].disableButton();
 })
 
 const enableValidation = (config) => {
